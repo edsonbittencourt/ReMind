@@ -1,56 +1,62 @@
-# reMind - Your Local Artificial Memory Assistant
+# reMind - Seu Assistente de Memória Artificial Local
 
-Welcome to reMind! This application captures and indexes your digital activities, transcribing and summarizing them for easy recall. reMind uses advanced AI models to provide detailed summaries of your daily activities and to answer questions based on your digital history. It is at its first version , a more optimal and runnable version will be uploaded on mid June 2024.
+Bem-vindo ao reMind! Este aplicativo captura e indexa suas atividades digitais, transcrevendo e resumindo-as para fácil recuperação. O reMind usa modelos de IA avançados para fornecer resumos detalhados de suas atividades diárias e para responder a perguntas com base em seu histórico digital. Esta é a sua primeira versão, uma versão mais otimizada e executável será carregada em meados de junho de 2024.
 
-## Table of Contents
+## Índice
 
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
-- [License](#license)
+- [reMind - Seu Assistente de Memória Artificial Local](#remind---seu-assistente-de-memória-artificial-local)
+  - [Índice](#índice)
+  - [Recursos](#recursos)
+  - [Instalação](#instalação)
+  - [Uso](#uso)
+  - [Endpoints da API](#endpoints-da-api)
+    - [`/`](#)
+    - [`send_message`](#send_message)
+  - [Configuração](#configuração)
+  - [Contribuindo](#contribuindo)
+  - [Licença](#licença)
+  - [Contato](#contato)
 
-## Features
+## Recursos
 
-- **Capture Digital Activities**: Records screenshots, audio, and other digital activities.
-- **Text Transcription**: Transcribes text from captured screenshots.
-- **Indexing**: Uses vector databases to index and retrieve documents.
-- **Summarization**: Provides detailed summaries of daily activities.
-- **Interactive Chat**: Interact with the application using a chat interface to query your digital history.
+- **Captura de Atividades Digitais**: Registra capturas de tela, áudio e outras atividades digitais.
+- **Transcrição de Texto**: Transcreve texto de capturas de tela.
+- **Indexação**: Usa bancos de dados vetoriais para indexar e recuperar documentos.
+- **Resumização**: Fornece resumos detalhados das atividades diárias.
+- **Chat Interativo**: Interaja com o aplicativo usando uma interface de chat para consultar seu histórico digital.
 
-## Installation
+## Instalação
 
-To get started with reMind, follow these steps:
+Para começar com o reMind, siga estes passos:
 
-1. **Clone the Repository**
+1. **Clone o Repositório**
     ```sh
     git clone https://github.com/DonTizi/reMind.git
     cd reMind
     ```
 
-2. **Set Up a Virtual Environment**
+2. **Configure um Ambiente Virtual**
     ```sh
     python3 -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    source venv/bin/activate  # No Windows use `venv\Scripts\activate`
     ```
 
-3. **Install Dependencies**
+3. **Instale as Dependências**
     ```sh
     pip install -r requirements.txt
     ```
 
-4. **Install Node.js and npm** (for the Electron app)
-    Download and install Node.js from [nodejs.org](https://nodejs.org/).
+4. **Instale Node.js e npm** (para o aplicativo Electron)
+    Baixe e instale Node.js a partir de [nodejs.org](https://nodejs.org/).
 
-5. **Set Up the Electron App**
+5. **Configure o Aplicativo Electron**
     ```sh
     npm install
     ```
 
-6. **Install Ollama and Set Up the LLM**
+6. **Instale Ollama e Configure o LLM**
 
-    After installing Ollama, follow these steps to set up the LLM:
+    Após instalar o Ollama, siga estes passos para configurar o LLM:
 
     ```sh
     ollama run llama3
@@ -58,66 +64,64 @@ To get started with reMind, follow these steps:
     ollama create recallAI
     ```
 
-    Use the following system prompt for your LLM:
+    Use o seguinte prompt de sistema para seu LLM:
 
     ```plaintext
-    You are RecallAI, an advanced artificial memory assistant. Your primary function is to capture, index, and summarize digital activities for easy recall. You provide detailed summaries of daily activities and answer questions based on the user's digital history. Your responses should be concise, accurate, and helpful.
+    Você é o RecallAI, um assistente de memória artificial avançado. Sua função principal é capturar, indexar e resumir atividades digitais para fácil recuperação. Você fornece resumos detalhados das atividades diárias e responde a perguntas com base no histórico digital do usuário. Suas respostas devem ser concisas, precisas e úteis.
     ```
 
+## Uso
 
-
-## Usage
-
-1. **Start the Flask Server**
+1. **Inicie o Servidor Flask**
     ```sh
     python main.py
     ```
 
-2. **Start the Electron App**
+2. **Inicie o Aplicativo Electron**
     ```sh
     npm run start
     ```
 
-3. **Interact with the Application**
-    - Use the chat interface to query your digital history or ask for summaries of your activities.
+3. **Interaja com o Aplicativo**
+    - Use a interface de chat para consultar seu histórico digital ou pedir resumos de suas atividades.
 
-## API Endpoints
+## Endpoints da API
 
 ### `/`
-- **Description**: Checks if the application is running.
-- **Method**: GET
-- **Response**: "Chat application is running!"
+- **Descrição**: Verifica se o aplicativo está em execução.
+- **Método**: GET
+- **Resposta**: "Aplicativo de chat está em execução!"
 
 ### `send_message`
-- **Description**: Handles incoming messages and generates responses.
-- **Method**: SocketIO Event
-- **Data**: JSON object containing the user message.
-- **Response**: Stream of messages generated by the AI model.
+- **Descrição**: Lida com mensagens recebidas e gera respostas.
+- **Método**: Evento SocketIO
+- **Dados**: Objeto JSON contendo a mensagem do usuário.
+- **Resposta**: Fluxo de mensagens geradas pelo modelo de IA.
 
-## Configuration
+## Configuração
 
-- **JSON File**: Ensure `all_texts.json` is present in the `memory_capture/vectore` directory. If the file does not exist, it will be created with sample data.
-- **Persist Directory**: The vector database is stored in `memory_capture/vectore/vectoreDB`.
+- **Arquivo JSON**: Certifique-se de que `all_texts.json` esteja presente no diretório `memory_capture/vectore`. Se o arquivo não existir, ele será criado com dados de exemplo.
+- **Diretório Persist**: O banco de dados vetorial é armazenado em `memory_capture/vectore/vectoreDB`.
 
-## Contributing
+## Contribuindo
 
-We welcome contributions from the community! To contribute:
+Agradecemos contribuições da comunidade! Para contribuir:
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Create a pull request.
+1. Faça um fork do repositório.
+2. Crie um novo branch (`git checkout -b feature-branch`).
+3. Faça suas alterações.
+4. Commit suas alterações (`git commit -m 'Adicionar nova funcionalidade'`).
+5. Envie para o branch (`git push origin feature-branch`).
+6. Crie um pull request.
 
-## License
+## Licença
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## Contact
+## Contato
 
-For questions or support, please open an issue in the GitHub repository or contact me at [elyes.melbouci@gmail.com](mailto:elyes.melbouci@gmail.com).
+Para perguntas ou suporte, abra uma issue no repositório GitHub ou entre em contato pelo email [elyes.melbouci@gmail.com](mailto:elyes.melbouci@gmail.com).
 
 ---
 
-Thank you for using reMind! We hope it helps you manage and recall your digital activities effortlessly. By making reMind open-source, we aim to foster a collaborative environment where developers can contribute to and improve this innovative application. Happy coding!
+Obrigado por usar o reMind! Esperamos que ele ajude você a gerenciar e recordar suas atividades digitais sem esforço. Ao tornar o reMind open-source, pretendemos fomentar um ambiente colaborativo onde desenvolvedores possam contribuir e melhorar este aplicativo inovador. Feliz codificação!
